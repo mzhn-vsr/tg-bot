@@ -6,7 +6,7 @@ export const baseAction: Action = async (bot) => {
   bot.start(async (ctx) => await ctx.replyWithMarkdownV2(_("message_welcome")));
 
   bot.on("message", async (ctx) => {
-    if (ctx.text == "") {
+    if (ctx.text == undefined || ctx.text == "") {
       ctx.replyWithMarkdownV2(_("message_unknown_payload"));
       return;
     }
