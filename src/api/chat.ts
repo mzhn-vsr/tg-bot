@@ -6,7 +6,7 @@ import client from "../util/client";
  */
 export async function sendMessage(message: string) {
   const response = await client.post("/predict", {
-    input: message,
+    question: message,
   });
 
   if (response.status != 200)
