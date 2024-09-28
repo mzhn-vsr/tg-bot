@@ -1,4 +1,4 @@
-import { Telegraf } from "telegraf";
+import { Input, Telegraf } from "telegraf";
 import { delay } from "../util/time";
 import registerActions from "./actions";
 
@@ -22,6 +22,7 @@ export async function setupWebhook(env: NodeJS.ProcessEnv, bot: Telegraf) {
     domain: env.WEBHOOK_DOMAIN,
     path: env.WEBHOOK_PATH,
     secret_token: env.WEBHOOK_SECRET,
+    certificate: Input.fromLocalFile(env.WEBHOOK_CERT),
   });
 }
 

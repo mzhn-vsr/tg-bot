@@ -7,6 +7,7 @@ declare global {
       WEBHOOK_PORT: number;
       WEBHOOK_PATH: string;
       WEBHOOK_SECRET: string;
+      WEBHOOK_CERT: string;
     }
   }
 }
