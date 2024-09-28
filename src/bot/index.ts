@@ -22,7 +22,10 @@ export async function setupWebhook(env: NodeJS.ProcessEnv, bot: Telegraf) {
     domain: env.WEBHOOK_DOMAIN,
     path: env.WEBHOOK_PATH,
     secret_token: env.WEBHOOK_SECRET,
-    certificate: Input.fromLocalFile(env.WEBHOOK_CERT),
+    certificate:
+      env.WEBHOOK_CERT && env.WEBHOOK_CERT != ""
+        ? Input.fromLocalFile(env.WEBHOOK_CERT)
+        : null,
   });
 }
 
