@@ -15,6 +15,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
 
   const webhook = await bot.setupWebhook(env, tgBot);
 
+  // TODO: strange typing problems which doesn't match documentation
   // @ts-ignore
   fastify.post(`${env.WEBHOOK_PATH}`, webhook);
 };

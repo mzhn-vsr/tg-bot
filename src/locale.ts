@@ -11,6 +11,7 @@ const locale = {
 } satisfies Locale;
 type AvailableLocaleKeys = keyof typeof locale;
 
+/** Get localized string by translation key */
 export const _ = (
   key: AvailableLocaleKeys,
   replacements?: Record<string, any>

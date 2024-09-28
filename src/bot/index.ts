@@ -4,6 +4,7 @@ import registerActions from "./actions";
 
 let tgBot: Telegraf | null = null;
 
+/** Create Telegraf bot instance */
 export function setup(env: NodeJS.ProcessEnv) {
   const bot = new Telegraf(env.BOT_TOKEN);
 
@@ -13,6 +14,7 @@ export function setup(env: NodeJS.ProcessEnv) {
   return bot;
 }
 
+/** Setup webhook for Telegram callbacks */
 export async function setupWebhook(env: NodeJS.ProcessEnv, bot: Telegraf) {
   await bot.telegram.deleteWebhook();
   await delay(500);
