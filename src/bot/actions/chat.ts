@@ -1,12 +1,21 @@
+import { Context } from "telegraf";
 import { button, inlineKeyboard } from "telegraf/markup";
 import { Action } from ".";
 import { sendMessage } from "../../api/chat";
 import { _ } from "../../locale";
+import logger from "../../util/log";
 
 const voteKeyboard = inlineKeyboard([
   button.callback("👍", "good"),
   button.callback("👎", "bad"),
 ]);
+
+const trySendMessage = async (text: string, ctx: Context) => {
+  await ctx.sendChatAction("typing");
+  const response = await sendMessage(text);
+
+  ctx.reply(response, { reply_markup: voteKeyboard.reply_markup });
+};
 
 export const chatAction: Action = async (bot) => {
   bot.on("message", async (ctx) => {
@@ -15,16 +24,11 @@ export const chatAction: Action = async (bot) => {
       return;
     }
 
-    let response;
     try {
-      await ctx.sendChatAction("typing");
-      response = await sendMessage(ctx.text);
+      await trySendMessage(ctx.text, ctx);
     } catch (e) {
       ctx.reply(_("message_server_error"));
-      console.error(e);
-      return;
+      logger.error(e);
     }
-
-    ctx.reply(response, { reply_markup: voteKeyboard.reply_markup });
   });
 };
