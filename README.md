@@ -1,23 +1,30 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
-This project was bootstrapped with Fastify-CLI.
+# ChatBot "Anton"
 
-## Available Scripts
+Интеллектуальный помощник сотрудника поддержки Rutube.
+Поисковая система по базе знаний ЧаВо.
 
-In the project directory, you can run:
+Основной стэк: `telegraf`, `fastify`, `nodejs`
 
-### `npm run dev`
+## Требования
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Бот использует взаимодействие с серверами Telegram через callback, так что для работы потребуется публичный сервер с доменом.
 
-### `npm start`
+## Развертывание
 
-For production mode
+### Docker
 
-### `npm run test`
+Приложение поддерживает развертывание в среде Docker Compose
 
-Run the test cases.
+### Ручное развертывание
 
-## Learn More
+1. Установить необходимые библиотеки
+    
+    ```bash
+    npm ci
+    ```
 
-To learn Fastify, check out the [Fastify documentation](https://fastify.dev/docs/latest/).
+2. Запустить проект
+
+    ```bash
+    npm run start
+    ```
