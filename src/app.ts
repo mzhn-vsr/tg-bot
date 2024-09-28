@@ -1,5 +1,6 @@
 import { FastifyPluginAsync, FastifyServerOptions } from "fastify";
 import * as bot from "./bot";
+import logger from "./util/log";
 
 export interface AppOptions extends FastifyServerOptions {}
 
@@ -10,6 +11,8 @@ const app: FastifyPluginAsync<AppOptions> = async (
   fastify,
   opts
 ): Promise<void> => {
+  logger.info("Fastify init phase start");
+
   const env = process.env;
   const tgBot = bot.setup(env);
 
@@ -18,6 +21,8 @@ const app: FastifyPluginAsync<AppOptions> = async (
   // TODO: strange typing problems which doesn't match documentation
   // @ts-ignore
   fastify.post(`${env.LISTEN_PATH}`, webhook);
+
+  logger.info("Fastify init phase end");
 };
 
 export default app;

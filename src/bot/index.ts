@@ -1,4 +1,5 @@
 import { Input, Telegraf } from "telegraf";
+import logger from "../util/log";
 import { delay } from "../util/time";
 import registerActions from "./actions";
 
@@ -9,6 +10,7 @@ export function setup(env: NodeJS.ProcessEnv) {
   const bot = new Telegraf(env.BOT_TOKEN);
 
   registerActions(bot);
+  logger.info("Telegraf bot initialized");
 
   tgBot = bot;
   return bot;
