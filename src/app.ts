@@ -17,7 +17,7 @@ const app: FastifyPluginAsync<AppOptions> = async (
 
   // TODO: strange typing problems which doesn't match documentation
   // @ts-ignore
-  fastify.post(`${env.WEBHOOK_PATH}`, webhook);
+  fastify.post(`${env.LISTEN_PATH}`, webhook);
 };
 
 export default app;
