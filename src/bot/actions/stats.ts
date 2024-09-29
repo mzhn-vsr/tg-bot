@@ -28,6 +28,7 @@ export const statsAction: Action = async (bot) => {
     const isGood = status === "good";
 
     const statusString = isGood ? "хорошую" : "плохую";
+    const statusEmoji = isGood ? "👍" : "👎";
 
     try {
       await sendStatus(id, isGood);
@@ -36,7 +37,8 @@ export const statsAction: Action = async (bot) => {
     }
 
     ctx.editMessageText(
-      ctx.text + `\n\n` + _("message_vote", { vote: statusString }),
+      `${ctx.text}\n\n${statusEmoji} ` +
+        _("message_vote", { vote: statusString }),
       { parse_mode: "HTML", reply_markup: inlineKeyboard([]).reply_markup }
     );
   });
